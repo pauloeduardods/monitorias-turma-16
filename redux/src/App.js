@@ -24,10 +24,10 @@ class App extends React.Component {
         {/* Exemplo usando o state */}
         <h1>{ current_number }</h1>
         {/* Exemplo usando o dispatch */}
-        <button onClick={ () => incremet() }>Adicionar</button>
-        <button onClick={ () => incremet(10) }>Adicionar +10</button>
-        <button onClick={() => decrement()}>Diminuir</button>
-        <button onClick={() => decrement(10)}>Diminuir +10</button>
+        <button onClick={ () => incremet() }>+1</button>
+        <button onClick={ () => incremet(10) }>+10</button>
+        <button onClick={() => decrement()}>-1</button>
+        <button onClick={() => decrement(10)}>-10</button>
       </div>
     );
   }
