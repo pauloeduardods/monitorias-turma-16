@@ -14,6 +14,6 @@ O gerenciamento de estado foi feito utilizando redux para revisar o conceito de 
 
 ### Como ver o estado do app 01 - Redux
 
-Depois de iniciar o app, você pode ver o estado do redux no browser utilizando o plugin [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=pt-BR).
-Para isso basta acessar o navegador e acessar http://localhost:3000/ e depois `inspecionar elemento` e na parte superior onde fica "Elements" "Console" "Network", e clicar em Redux.
-Com essa extensão você pode ver o estado do seu app quando utiliza redux.
+ - Depois de iniciar o app, você pode ver o estado do redux no browser utilizando o plugin [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=pt-BR).
+ - Para isso basta acessar o navegador e acessar http://localhost:3000/ e depois `inspecionar elemento` e na parte superior onde fica "Elements" "Console" "Network", e clicar em Redux.
+ - Com essa extensão você pode ver o estado do seu app quando utiliza redux.
