@@ -2,8 +2,33 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { setPriceAction } from "../Redux/actions/priceAction";
 
 class Price extends React.Component {
+  constructor() {
+    super();
+    this.getPrice = this.getPrice.bind(this);
+    this.timeout = null;
+  }
+
+  getPrice() {
+    this.timeout = setTimeout(async() => {
+      const { setPrice } = this.props;
+      const response = await fetch('https://api.biscoint.io/v1/ticker');
+      const data = await response.json();
+      setPrice(data.data.last);
+      this.getPrice();
+    }, 2000);
+  }
+
+  componentDidMount() {
+    this.getPrice();
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
+
   render() {
     const { price } = this.props;
     return (
@@ -26,4 +51,8 @@ const mapStateToProps = (state) => ({
   price: state.price.price,
 });
 
-export default connect(mapStateToProps)(Price);
+const mapDispatchToProps = (dispatch) => ({
+  setPrice: (price) => dispatch(setPriceAction(price)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Price);

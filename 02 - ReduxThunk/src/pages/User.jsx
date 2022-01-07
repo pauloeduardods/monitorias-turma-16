@@ -3,23 +3,47 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { setPriceAction } from "../Redux/actions/priceAction";
 
 class User extends React.Component {
+  constructor() {
+    super();
+    this.getPrice = this.getPrice.bind(this);
+  }
+
+  async getPrice() {
+    const { setPrice } = this.props;
+    const response = await fetch('https://api.biscoint.io/v1/ticker');
+    const data = await response.json();
+    setPrice(data.data.last);
+  }
+  
+  componentDidMount() {
+    this.getPrice();
+  }
+
   render() {
     const { name, email, quantity, buyedPrice, price } = this.props;
     if (!name || !email) {
       return <Redirect to="/login" />
     }
+    
     return (
       <div>
         <h1>{name}</h1>
         <p>{email}</p>
+        <h2>Preço atual</h2>
+        <p>{price}</p>
         <h2>Quantidade</h2>
         <p>{quantity}</p>
         <h2>Valor pago</h2>
-        <p>{quantity * buyedPrice}</p>
+        <p>{(quantity * buyedPrice).toFixed(2)}</p>
         <h2>Valor atual</h2>
-        <p>{quantity * price}</p>
+        <p>{(quantity * price).toFixed(2)}</p>
+        <h2>Lucro atual</h2>
+        <p>{((quantity * price) - (quantity * buyedPrice)).toFixed(2)}</p>
+        <h3>Lucro em %</h3>
+        <p>{(((price / buyedPrice) - 1) * 100).toFixed(2)}%</p>
         <Link to="/login">Login</Link>
         <Link to="/">Preco</Link>
         <Link to="/buy">Comprar</Link>
@@ -29,6 +53,7 @@ class User extends React.Component {
 }
 
 User.propTypes = {
+  setPrice: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
@@ -44,4 +69,8 @@ const mapStateToProps = (state) => ({
   price: state.price.price,
 });
 
-export default connect(mapStateToProps)(User);
+const mapDispatchToProps = (dispatch) => ({
+  setPrice: (price) => dispatch(setPriceAction(price)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);

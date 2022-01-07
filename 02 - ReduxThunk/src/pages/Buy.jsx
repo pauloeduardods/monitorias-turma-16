@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { setPurchaseAction } from "../Redux/actions/userActions";
+import { setPriceAction } from "../Redux/actions/priceAction";
 
 class Buy extends React.Component {
   constructor(props) {
@@ -13,6 +14,18 @@ class Buy extends React.Component {
       buyedPrice: Number(props.buyedPrice),
     };
     this.onSubmit = this.onSubmit.bind(this);
+    this.getPrice = this.getPrice.bind(this);
+  }
+
+  async getPrice() {
+    const { setPrice } = this.props;
+    const response = await fetch('https://api.biscoint.io/v1/ticker');
+    const data = await response.json();
+    setPrice(data.data.last);
+  }
+
+  componentDidMount() {
+    this.getPrice();
   }
 
   onSubmit = (e) => {
@@ -41,6 +54,7 @@ class Buy extends React.Component {
           <input
             type="number"
             id="quantity"
+            step="0.01"
             min="0"
             max="21000000"
             value={ quantity }
@@ -65,6 +79,7 @@ class Buy extends React.Component {
 
 Buy.propTypes = {
   setPurchese: PropTypes.func.isRequired,
+  setPrice: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
@@ -83,6 +98,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setPurchese: (price, quantity) => dispatch(setPurchaseAction(price, quantity)),
+  setPrice: (price) => dispatch(setPriceAction(price)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Buy);
