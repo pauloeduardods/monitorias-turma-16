@@ -22,7 +22,7 @@ Aprendemos alguns conceitos básicos de Redux e como utiliza-los com o React.
  - Para isso basta acessar o navegador e acessar http://localhost:3000/ e depois `inspecionar elemento` e na parte superior onde fica "Elements" "Console" "Network", e clicar em Redux.
  - Com essa extensão você pode ver o estado do seu app quando utiliza Redux.
 
-## 01 - Redux Thunk
+## 02 - Redux Thunk
 
 Nesse repositório revisamos conteúdos da aula de Redux Thunk. Foi feito um app onde temos 4 páginas
 - A primeira que mostra o preço do bitcoin.
@@ -42,7 +42,7 @@ Para pegar o preço do bitcoin foi utilizado a [API](https://biscoint.io/docs/ap
 
 Aprendemos como utilizar o Redux e Redux Thunk, além de mostrar algumas vantagens em fazer uma requisição no thunk do que fazer uma requisição direto no componente e depois disparar uma action com o resultado.
 
-### Como ver o estado do app 01 - Redux
+### Como ver o estado do app 02 - Redux Thunk
 
  - Depois de iniciar o app, você pode ver o estado do Redux no browser utilizando o plugin [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=pt-BR).
  - Para isso basta acessar o navegador e acessar http://localhost:3000/ e depois `inspecionar elemento` e na parte superior onde fica "Elements" "Console" "Network", e clicar em Redux.
