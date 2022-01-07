@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { setPurchaseAction } from "../Redux/actions/userActions";
-import { setPriceAction } from "../Redux/actions/priceAction";
+import { setPriceFetch } from "../Redux/actions/priceAction";
 
 class Buy extends React.Component {
   constructor(props) {
@@ -14,18 +14,20 @@ class Buy extends React.Component {
       buyedPrice: Number(props.buyedPrice),
     };
     this.onSubmit = this.onSubmit.bind(this);
-    this.getPrice = this.getPrice.bind(this);
+    // this.getPrice = this.getPrice.bind(this); //sem o thunk
   }
 
-  async getPrice() {
-    const { setPrice } = this.props;
-    const response = await fetch('https://api.biscoint.io/v1/ticker');
-    const data = await response.json();
-    setPrice(data.data.last);
-  }
+  // async getPrice() { //sem o thunk 
+  //   const { setPrice } = this.props;
+  //   const response = await fetch('https://api.biscoint.io/v1/ticker');
+  //   const data = await response.json();
+  //   setPrice(data.data.last);
+  // }
 
   componentDidMount() {
-    this.getPrice();
+    // this.getPrice(); //sem o thunk
+    const { setPrice } = this.props; //com o thunk
+    setPrice(); //com o thunk
   }
 
   onSubmit = (e) => {
@@ -54,11 +56,11 @@ class Buy extends React.Component {
           <input
             type="number"
             id="quantity"
-            step="0.01"
+            step="0.000001"
             min="0"
             max="21000000"
             value={ quantity }
-            onChange={ (e) => this.setState({ quantity: e.target.value }) } 
+            onChange={ (e) => this.setState({ quantity: e.target.value }) }
           />
           <label htmlFor="buyedPrice">Preço: </label>
           <input
@@ -69,9 +71,9 @@ class Buy extends React.Component {
           />
           <button type="submit">Comprar</button>
         </form>
-        <Link to="/login">Login</Link>
-        <Link to="/user">Carteira</Link>
-        <Link to="/">Precor</Link>
+        <p><Link to="/login">Login</Link></p>
+        <p><Link to="/user">Carteira</Link></p>
+        <p><Link to="/">Precor</Link></p>
       </>
     );
   }
@@ -98,7 +100,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setPurchese: (price, quantity) => dispatch(setPurchaseAction(price, quantity)),
-  setPrice: (price) => dispatch(setPriceAction(price)),
+  // setPrice: (price) => dispatch(setPriceAction(price)), //sem o thunk
+  setPrice: () => dispatch(setPriceFetch()), //com o thunk
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Buy);

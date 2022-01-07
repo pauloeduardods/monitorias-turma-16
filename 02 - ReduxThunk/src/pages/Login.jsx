@@ -24,16 +24,18 @@ class Login extends React.Component {
 
   render() {
     return (
-      <form onSubmit={ this.onSubmit }>
-        <label htmlFor="name">Nome: </label>
-        <input type="text" id="name" onChange={ (e) => this.setState({ name: e.target.value })}/>
-        <label htmlFor="email">Email: </label>
-        <input type="text" id="email" onChange={ (e) => this.setState({ email: e.target.value })}/>
-        <button type="submit">Entrar</button>
-        <Link to="/">preco</Link>
-        <Link to="/user">Carteira</Link>
-        <Link to="/buy">Comprar</Link>
-      </form>
+      <>
+        <form onSubmit={this.onSubmit}>
+          <label htmlFor="name">Nome: </label>
+          <input type="text" id="name" onChange={(e) => this.setState({ name: e.target.value })} />
+          <label htmlFor="email">Email: </label>
+          <input type="text" id="email" onChange={(e) => this.setState({ email: e.target.value })} />
+          <button type="submit">Entrar</button>
+        </form>
+        <p><Link to="/">preco</Link></p>
+        <p><Link to="/user">Carteira</Link></p>
+        <p><Link to="/buy">Comprar</Link></p>
+      </>
     );
   }
 }

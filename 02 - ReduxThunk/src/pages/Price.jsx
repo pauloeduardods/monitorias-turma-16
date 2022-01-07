@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setPriceAction } from "../Redux/actions/priceAction";
+import { setPriceFetch } from "../Redux/actions/priceAction";
 
 class Price extends React.Component {
   constructor() {
@@ -11,14 +11,21 @@ class Price extends React.Component {
     this.timeout = null;
   }
 
+  // getPrice() { //sem o thunk
+  //   this.timeout = setTimeout(async() => {
+  //     const { setPrice } = this.props;
+  //     const response = await fetch('https://api.biscoint.io/v1/ticker');
+  //     const data = await response.json();
+  //     setPrice(data.data.last);
+  //     this.getPrice();
+  //   }, 2000);
+  // }
+
   getPrice() {
-    this.timeout = setTimeout(async() => {
+    this.timeout = setInterval(() => { //com o thunk
       const { setPrice } = this.props;
-      const response = await fetch('https://api.biscoint.io/v1/ticker');
-      const data = await response.json();
-      setPrice(data.data.last);
-      this.getPrice();
-    }, 2000);
+      setPrice();
+    }, 2000)
   }
 
   componentDidMount() {
@@ -26,7 +33,7 @@ class Price extends React.Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.timeout);
+    clearInterval(this.timeout);
   }
 
   render() {
@@ -35,9 +42,9 @@ class Price extends React.Component {
       <div>
         <h1>Preço atual do bitcoin</h1>
         <p>{price}</p>
-        <Link to="/login">Login</Link>
-        <Link to="/user">Carteira</Link>
-        <Link to="/buy">Comprar</Link>
+        <p><Link to="/login">Login</Link></p>
+        <p><Link to="/user">Carteira</Link></p>
+        <p><Link to="/buy">Comprar</Link></p>
       </div>
     );
   }
@@ -52,7 +59,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setPrice: (price) => dispatch(setPriceAction(price)),
+  // setPrice: (price) => dispatch(setPriceAction(price)), //sem o thunk
+  setPrice: () => dispatch(setPriceFetch()), //com o thunk
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Price);
