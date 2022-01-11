@@ -7,6 +7,9 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducers from '../../Redux/reducers';
 
+// Essa solução é uma mistura da renderWithRouter e renderWithRedux.
+// Com ela poderemos testar uma aplicação com o Redux e o Router.
+
 const renderWithRouterAndRedux = (
   component,
   {

@@ -41,8 +41,6 @@ class User extends React.Component {
     
     return (
       <div>
-        <h1>{name}</h1>
-        <p>{email}</p>
         <h2>Preço atual</h2>
         <p>{price}</p>
         <h2>Quantidade</h2>

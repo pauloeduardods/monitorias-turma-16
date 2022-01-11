@@ -5,6 +5,8 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../../reducers';
 
+// Essa funcção é responsável por renderizar um componente com o Redux, usando o <Provider> igual em /src/index.js
+// Como podem ver é a mesma estrutura feita em renderWithRouter.
 const renderWithRedux = (
   component, { initialState, store = createStore(rootReducer, initialState, applyMiddleware(thunk)) } = {},
 ) => ({
