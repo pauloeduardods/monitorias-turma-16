@@ -47,3 +47,33 @@ Aprendemos como utilizar o Redux e Redux Thunk, além de mostrar algumas vantage
  - Depois de iniciar o app, você pode ver o estado do Redux no browser utilizando o plugin [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=pt-BR).
  - Para isso basta acessar o navegador e acessar http://localhost:3000/ e depois `inspecionar elemento` e na parte superior onde fica "Elements" "Console" "Network", e clicar em Redux.
  - Com essa extensão você pode ver o estado do seu app quando utiliza Redux.
+
+## 03 - Test Redux
+
+Neste repositório revisamos o conteúdo de redux, redux thunk e testamos a aplicação utilizando o renderWithRouterAndRedux.
+- Testamos a tela de login, simulamos um usuário colocando seu nome e email e verificamos se o estado do redux foi alterado.
+- Fizemos um mock na função fetch, e disparamos a action do Redux Thunk para pegar o preço do bitcoin, e verificamos se o estado do redux foi alterado corretamente.
+- Aprendemos como usar o `waitFor` para fazer o ultimo teste mencionado.
+
+### Como rodar o app 03 - Test Redux
+
+1. Entrar na pasta do projeto com `cd '03 - Test Redux'`
+2. Instalar as dependências do projeto com `npm install`
+3. Rodar o app com `npm start`
+4. Abrir o navegador e acessar http://localhost:3000
+
+### Como testar o app 03 - Test Redux
+
+1. Entrar na pasta do projeto com `cd '03 - Test Redux'`
+2. Instalar as dependências do projeto com `npm install`
+3. Rodar o teste com `npm test`
+
+OU se preferir você pode gerar um report de cobertura com o seguinte comando:
+
+`npm run test-coverage`
+
+Quando se utiliza o test-coverage é gerado uma nova pasta com o nome de `coverage`, dentro dessa pasta tem outra que chama `Icov-report`, onde está o relatório de cobertura em index.html, Podendo ser aberto com a extensão `Live Server`.
+
+### Oque aprendemos
+
+Aprendemos a testar uma aplicação utilizando o renderWithRouterAndRedux. Além de recapitular algumas funções do RTL e Jest.
