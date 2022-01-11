@@ -12,7 +12,7 @@ O gerenciamento de estado foi feito utilizando Redux para revisar o conceito de 
 3. Rodar o app com `npm start`
 4. Abrir o navegador e acessar http://localhost:3000
 
-### Oque aprendemos
+### O que aprendemos
 
 Aprendemos alguns conceitos básicos de Redux e como utiliza-los com o React.
 
@@ -38,7 +38,7 @@ Para pegar o preço do bitcoin foi utilizado a [API](https://biscoint.io/docs/ap
 3. Rodar o app com `npm start`
 4. Abrir o navegador e acessar http://localhost:3000
 
-### Oque aprendemos
+### O que aprendemos
 
 Aprendemos como utilizar o Redux e Redux Thunk, além de mostrar algumas vantagens em fazer uma requisição no thunk do que fazer uma requisição direto no componente e depois disparar uma action com o resultado.
 
@@ -74,6 +74,6 @@ OU se preferir você pode gerar um report de cobertura com o seguinte comando:
 
 Quando se utiliza o test-coverage é gerado uma nova pasta com o nome de `coverage`, dentro dessa pasta tem outra que chama `Icov-report`, onde está o relatório de cobertura em index.html, Podendo ser aberto com a extensão `Live Server`.
 
-### Oque aprendemos
+### O que aprendemos
 
 Aprendemos a testar uma aplicação utilizando o renderWithRouterAndRedux. Além de recapitular algumas funções do RTL e Jest.
