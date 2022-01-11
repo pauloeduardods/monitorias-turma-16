@@ -33,6 +33,7 @@ describe('App', () => {
   });
   it('Testa o thunk', async () => {
     // Como o retorno da api é o preço de uma criptomoeda e nao podemos saber qual vai ser o proximo valor entao vamos mockar o fetch.
+    // eslint-disable-next-line no-undef
     globalThis.fetch = jest.fn().mockImplementation(() =>
       Promise.resolve({
         json: () => Promise.resolve(
