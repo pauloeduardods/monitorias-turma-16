@@ -77,3 +77,23 @@ Quando se utiliza o test-coverage é gerado uma nova pasta com o nome de `covera
 ### O que aprendemos
 
 Aprendemos a testar uma aplicação utilizando o renderWithRouterAndRedux. Além de recapitular algumas funções do RTL e Jest.
+
+## 03 - Test Redux
+
+Nesse repositorio revisamos o conteúdo de Docker, criamos um Dockerfile para uma aplicação node backend e um Dockerfile para uma aplicação React frontend.
+
+### Como rodar a aplicação
+
+#### Com docker-compose
+1. Entrar no diretório do projeto com `cd '04 - Docker'`
+2. Rodar `docker-compose up`
+3. Abrir o navegador e acessar http://localhost
+
+#### Com docker
+
+1. Entrar no diretório do projeto com `cd '04 - Docker'`
+2. Buildar a imagem do backend com `docker build -t backend ./backend`
+3. Rodar o container com `docker run -p 8080:3000 -e PORT=3000 backend`
+4. Buildar a imagem do frontend com `docker build --build-arg REACT_APP_BASE_URL=http://localhost:8080 -t frontend ./frontend `
+5. Rodar o container com `docker run -p 80:80 frontend`
+6. Abrir o navegador e acessar http://localhost
