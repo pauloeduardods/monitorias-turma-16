@@ -1,0 +1,17 @@
+version: '3.0'
+services:
+  backend:
+    build: ./backend
+    environment:
+      - PORT=3000
+    ports:
+      - "8080:3000"
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - REACT_APP_BASE_URL=http://localhost:8080
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend

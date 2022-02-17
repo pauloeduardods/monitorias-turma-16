@@ -37,6 +37,7 @@ function Login({ history }) {
             id="input-name"
           />
         </label>
+        <button type="submit">Entrar</button>
       </form>
     </div>
   );
