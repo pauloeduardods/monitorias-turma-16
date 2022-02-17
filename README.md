@@ -78,7 +78,7 @@ Quando se utiliza o test-coverage é gerado uma nova pasta com o nome de `covera
 
 Aprendemos a testar uma aplicação utilizando o renderWithRouterAndRedux. Além de recapitular algumas funções do RTL e Jest.
 
-## 03 - Test Redux
+## 04 - Docker
 
 Nesse repositorio revisamos o conteúdo de Docker, criamos um Dockerfile para uma aplicação node backend e um Dockerfile para uma aplicação React frontend.
 
