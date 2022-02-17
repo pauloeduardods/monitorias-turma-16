@@ -1,0 +1,30 @@
+# Primeiros definimos a versao do docker-compose 
+version: '3.0'
+# Nosso sevices são os containers que serão criados
+services:
+  # Definimos o nome do container no caso backend
+  backend:
+    # Como precisamos buildar o arquivo Dockerfile para o container backend precisamos passar o build e depois passamos o local do arquivo Dockerfile
+    build: ./backend
+    # Aqui definimos nossas variaveis de ambiente, como podemos ver dentro de /backend/.env.example precisamos passar a variavel PORT
+    environment:
+      - PORT=3000
+    # Aqui vamos liberar a porta 8080 para acessarmos o backend do localhost:8080, ou seja apontamos que a porta 8080 do nosso computador aponta para a porta 3000 (A mesma da variavel PORT) do container backend
+    ports:
+      - "8080:3000"
+  # Aqui definimos o nome do container que será criado
+  frontend:
+    # Com o react é um pouco diferente, ainda precisamos buildar, porem durante o processo de build precisamos passar uma variavel de ambiente, que no caso é o REACT_APP_BASE_URL, essa url aponta para o nosso backend, ou seja o valor dela tem que ser http://localhost:8080, onde o 8080 é o valor da porta que o backend está rodando (definido em ports acima)
+    build:
+      # O context é o local onde está o arquivo Dockerfile
+      context: ./frontend
+      # Aqui passamos a variavel de ambiente REACT_APP_BASE_URL, precisamos passar aqui pois é uma variavel que sera necessária durante o processo de build!
+      args:
+        - REACT_APP_BASE_URL=http://localhost:8080
+    # Aqui definimos que a porta 80 do nosso computador aponta para a porta 80 do container frontend, lembrando que a porta padrão do protocolo http é a 80, ou seja se vc acessar http://localhost é a mesma coisa de acessar htttp://localhost:80
+    # O https (que é o protocolo http porem com segurança) é acessada pela porta 443, ou seja se vc acessar https://localhost é a mesma coisa de acessar https://localhost:443, mas nesse caso é necessario um certificado SSL
+    ports:
+      - "80:80"
+    # Aqui falamos que nosso container frontend depende do container backend
+    depends_on:
+      - backend

@@ -1,0 +1,4 @@
+# Aqui sempre colocamos as pastas e/ou arquivos que queremos que sejam ignorados quando fazemos COPY . .
+
+/node_modules
+.env
